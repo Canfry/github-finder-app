@@ -26,4 +26,3 @@ yarn-debug.log*
 yarn-error.log*
 
 
-"start": "cp ${ENV:-'vars/.env'} .env && react-scripts start"
