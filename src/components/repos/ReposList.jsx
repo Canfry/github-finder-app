@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import ReposItem from './ReposItem';
 
 const ReposList = ({ repos }) => {
   return (
@@ -8,7 +9,7 @@ const ReposList = ({ repos }) => {
           Latest Repositories
         </h2>
         {repos.map((repo) => (
-          <h3>{repo.name}</h3>
+          <ReposItem key={repo.id} repo={repo} />
         ))}
       </div>
     </div>
