@@ -5,7 +5,9 @@ import { useParams } from 'react-router-dom';
 import GithubContext from '../context/github/GithubContext';
 import Spinner from '../components/layout/Spinner';
 import ReposList from '../components/repos/ReposList';
-import { getUser, getRepos } from '../context/github/GithubActions';
+// import { getUser, getRepos } from '../context/github/GithubActions';
+// REPLACED BY
+import { getUserAndRepos } from '../context/github/GithubActions';
 
 const User = () => {
   const { user, loading, repos, dispatch } = useContext(GithubContext);
@@ -19,16 +21,19 @@ const User = () => {
     // getRepos(params.login);
 
     const getUserData = async () => {
-      const userData = await getUser(params.login);
-      dispatch({ type: 'GET_USER', payload: userData });
+      // const userData = await getUser(params.login);
+      // dispatch({ type: 'GET_USER', payload: userData });
 
-      const userRepoData = await getRepos(params.login);
-      dispatch({ type: 'GET_REPOS', payload: userRepoData });
+      // const userRepoData = await getRepos(params.login);
+      // dispatch({ type: 'GET_REPOS', payload: userRepoData });
+      // REPLACED BY
+
+      const userData = await getUserAndRepos(params.login);
+      dispatch({ type: 'GET_USER_AND_REPOS', payload: userData });
     };
 
     getUserData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [dispatch, params.login]);
 
   const {
     name,
